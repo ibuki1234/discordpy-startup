@@ -5,18 +5,17 @@ import traceback
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
-@client.event
-async def on_ready():
-    print('Bot is ready.')
-    
-@client.event
-async def on_message(message):
-    # メッセージ送信者がBotだった場合は無視する
-    if message.author.bot:
-        return
-    
-if message.content == 'おい槇原':
-        await message.channel.send('もうシャブなんてしないなんて言わないよ絶対')  
-        await message.channel.send('https://nikkan-spa.jp/wp-content/uploads/2017/12/yakubutsu2017-550x357.jpg')
+
+@bot.event
+async def on_command_error(ctx, error):
+    orig_error = getattr(error, "original", error)
+    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
+    await ctx.send(error_msg)
+
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send('pong')
+
 
 bot.run(token)
