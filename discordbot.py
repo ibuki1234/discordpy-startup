@@ -19,4 +19,4 @@ async def on_message(message):
         await message.channel.send('もうシャブなんてしないなんて言わないよ絶対')  
         await message.channel.send('https://nikkan-spa.jp/wp-content/uploads/2017/12/yakubutsu2017-550x357.jpg')
 
-client.run('Njk2MzI2MzE0MDg0MjcwMTEw.Xvgv8w.Gr2x01epk7YKdLT2QqRe3n5QeNs')
+bot.run(token)
